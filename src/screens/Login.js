@@ -1,17 +1,23 @@
 import React from 'react';
 
-import { StyleSheet, Image  } from 'react-native'
+import { StyleSheet, Image, TextInput  } from 'react-native'
 import { Heading, Input, Icon, Stack, Button,Box, Link, View} from 'native-base'
 
 import { SafeAreaView} from 'react-native-safe-area-context'
 import { MaterialIcons } from "@expo/vector-icons"
 
+//editores
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Animatable from 'react-native-animatable';
 
+
+
+// meus arquivos    
 import inputs  from '../styles/inputs';
 import core from '../styles/core'
+import buttons from '../styles/buttons';
 
-export default function Login(){
+export default function Login({ navigation }){
     const [show, setShow] = React.useState(false)
 
     const handleClick = () => setShow(!show)
@@ -25,13 +31,15 @@ export default function Login(){
                 >           
                 <Stack space={4} w="100%" alignItems="center">
                     <Box safeArea alignItems="center" mt="81">
-                        <Image
+                        <Animatable.Image
+                            animation="bounceIn"
                             source={require('../assets/Group1.png')}
                             alt="Alternate Text"
                             style = {core.imgLogin}
+                            onPress={()=> this.bounce}
                         />
                         <Heading
-                            mt=""
+                            mt="22"
                             size="lg"
                             fontWeight="600"
                             color="light.100"
@@ -43,55 +51,40 @@ export default function Login(){
                         
                     </Box>
                             
-                    <Box safeArea >
-                        <Input style={inputs.inputLaranja} placeholder="e-mail"  />
-                        <Input style={inputs.inputLaranja} placeholder="senha"  />
-                        <Input 
-                            mb="29"
-                            w={{
-                                base: "75%",
-                                md: "25%",
-                            }}
-                            InputLeftElement={
-                                <Icon
-                                    as={<MaterialIcons name="person" />}
-                                    size={5}
-                                    ml="2"
-                                    color="muted.400"
-                                />
-                            }
-                            placeholder="E-mail"
+                    <Box safeArea maxW="80">
+                        <TextInput
+                            
+                            style={inputs.inputLaranja} 
+                            placeholder="e-mail" 
+                            numberOfLines={1}
+
+
                         />
-                        <Input
-                        
-                        mb="36"
-                        type={show ? "text" : "password"}
-                        w={{
-                            base: "75%",
-                            md: "25%",
-                        }}
-                        InputRightElement={
-                            <Button size="xs" rounded="none" w="1/6" h="full" onPress={handleClick}>
-                            <Icon
-                                    as={<MaterialIcons name="visibility-off" />}
-                                    size={5}
-                                    mr="2"
-                                    color="muted.400"
+                        <Stack direction="row">
+                            <TextInput
+                                style={inputs.inputSenha} placeholder="senha"  
+                                type={show ? "text" : "password"}
                             />
+                            <Button  style={buttons.iconesLaranja} onPress={handleClick}>
+                                <Icon
+                                        as={<MaterialIcons name="visibility-off" />}
+                                        size={5}
+                                        mr="2"
+                                        color="muted.400"
+                                    />
                             </Button>
-                        }
-                        placeholder="Senha"
-                        />
+                        </Stack>
+                        
+                        
+
+                        
                         <Stack  direction="row" alignItems="center" space="2">
-                            <Link  href="">Cadastre-se aqui!</Link>
+                            <Link  onPress={()=>{ navigation.navigate('SignUp')}}>Cadastre-se aqui!</Link>
                             <Button
                             colorScheme="indigo"
-                            onPress={()=>{
-                                console.log('cadastrar novo usuario')
-                            }}
-                        
-                        >
-                            Novo Usuário? 
+                            onPress={()=>{ navigation.navigate('SignUp')}}
+>
+                            entrar
                         </Button>
                         </Stack>
                         

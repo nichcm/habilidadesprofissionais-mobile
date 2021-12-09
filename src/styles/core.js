@@ -13,3 +13,4 @@ const core = StyleSheet.create({
 });
 
 export default core
+

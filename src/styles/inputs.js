@@ -3,38 +3,63 @@ import { StyleSheet  } from 'react-native'
 
 const inputs = StyleSheet.create({
     inputLaranja: {
-        width: 375,
-        height: 54,
+        width: 300,
+        height: 58,
+        paddingBottom:4,
         borderRadius: 15,
         backgroundColor: '#ffff',
         marginBottom:15,
-        
+        borderColor:"#FFA95F",
         shadowColor: "#FFA95F",
-        shadowOffset: {
-            width: 6,
-            height: 13,
-        },
-        shadowOpacity: 1,
-        shadowRadius: 6,
+        borderWidth:1,
+        borderBottomWidth:5,
+        borderBottomColor: "#FFA95F99",
+        marginBottom:22,
 
-        elevation: 22,
+
+        // shadowOffset: {
+        //     width: 5,
+        //     height: 5,
+        // },
+        // shadowOpacity: 1,
+        // shadowRadius: 6,
+
+        // elevation: 5, 
         },
+    inputSenha: {
+        width: 250,
+        height: 58,
+        paddingBottom:4,
+        
+        backgroundColor: '#ffff',
+        marginBottom:15,
+        borderColor:"#FFA95F",
+        shadowColor: "#FFA95F",
+        borderWidth:1,
+        borderBottomWidth:5,
+        borderBottomColor: "#FFA95F99",
+        borderRightColor:"#ffff",
+        borderBottomLeftRadius: 15,
+        marginBottom:22,
+        borderTopLeftRadius: 15,
+    },  
+    
     inputRosa:{
-        width: 375,
+        width: 200,
         height: 54,
         borderRadius: 15,
         backgroundColor: '#ffff',
-        marginBottom:15,
+        marginBottom:22,
         
-        shadowColor: "#FF63A6",
-        shadowOffset: {
-            width: 6,
-            height: 13,
-        },
-        shadowOpacity: 1,
-        shadowRadius: 6,
+        // shadowColor: "#FF63A6",
+        // shadowOffset: {
+        //     width: 6,
+        //     height: 13,
+        // },
+        // shadowOpacity: 1,
+        // shadowRadius: 6,
 
-        elevation: 22,
+        // elevation: 22,
         },
 });
 
