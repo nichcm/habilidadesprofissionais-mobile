@@ -9,16 +9,17 @@ import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 
 // meus arquivos    
-import inputs  from '../styles/inputs';
-import core from '../styles/core'
-import buttons from '../styles/buttons';
-import { useAuth } from '../contexts/auth';
+import inputs  from '../../../styles/inputs';
+import core from '../../../../styles/core'
+import buttons from '../../../styles/buttons';
+import { useAuth } from '../../../contexts/auth';
 
 
 
 export default function Home({ navigation }){
 
-    const {user} = useAuth()
+    const {logOut} = useAuth()
+
     return (
         <View style={styles.container}>
             <LinearGradient 
@@ -39,7 +40,12 @@ export default function Home({ navigation }){
                 />
                 <Text >Meu Portifolio</Text>
             </View>
-            
+            <Button
+                colorScheme="primary"
+                onPress={()=> logOut()}
+            >
+                sair
+            </Button>
             
             
             <Button

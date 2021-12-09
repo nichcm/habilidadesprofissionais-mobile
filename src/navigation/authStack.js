@@ -6,9 +6,9 @@ import { View } from 'native-base';
 import { createNativeStackNavigator } from '../../node_modules/@react-navigation/native-stack';
 
 //screens
-import Login from '../screens/Login';
-import SignUp from '../screens/signUp';
-import Home from '../screens/home';
+import Login from '../screens/views/login/Login';
+import SignUp from '../screens/views/signUP/signUp';
+import Home from '../screens/views/home/home';
 
 
 const Stack = createNativeStackNavigator();

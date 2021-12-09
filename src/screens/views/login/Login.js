@@ -13,11 +13,11 @@ import * as Animatable from 'react-native-animatable';
 
 
 // meus arquivos    
-import inputs  from '../styles/inputs';
-import core from '../styles/core'
-import buttons from '../styles/buttons';
-import usuarioService from '../API/service';
-import { useAuth } from '../contexts/auth';
+import inputs  from '../../../styles/inputs';
+import core from '../../../styles/core'
+import buttons from '../../../styles/buttons';
+import usuarioService from '../../../API/service';
+import { useAuth } from '../../../contexts/auth';
 
 export default function Login({ navigation }){
     const [show, setShow] = React.useState(false)

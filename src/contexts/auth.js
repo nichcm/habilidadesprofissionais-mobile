@@ -3,7 +3,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 
 import axios from "axios"
 
-const AuthContext = createContext({user: {}, token:'', login:()=>{}})
+const AuthContext = createContext({
+    user: {},
+    token:'',
+    login:()=>{},
+    logOut:()=>{}
+})
 
 export const AuthProvider = (props) => {
     
@@ -29,6 +34,13 @@ export const AuthProvider = (props) => {
             return Promise.reject(error)
         })
     }
+    async function logOut(){
+        await AsyncStorage.clear();
+        setToken('')
+        setUser('')
+        
+        navigation.navigate("Login")
+    }
 
 
 
@@ -40,7 +52,8 @@ export const AuthProvider = (props) => {
             setUser,
             token,
             setToken,
-            login
+            login,
+            logOut
         }}>
             {props.children}
             
