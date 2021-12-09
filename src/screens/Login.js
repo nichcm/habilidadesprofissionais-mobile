@@ -16,9 +16,34 @@ import * as Animatable from 'react-native-animatable';
 import inputs  from '../styles/inputs';
 import core from '../styles/core'
 import buttons from '../styles/buttons';
+import usuarioService from '../API/service';
+import { useAuth } from '../contexts/auth';
 
 export default function Login({ navigation }){
     const [show, setShow] = React.useState(false)
+    const [email, setEmail] = React.useState("");
+    const [psw, setPsw] = React.useState("");   
+
+    const {login} = useAuth();
+
+    const entrar = async (event) =>{
+        let data ={
+            email: email,
+            senha: psw
+        }
+        try {
+            const response = await login(data)
+
+            navigation.navigate('Home')
+        
+        } catch (error) {
+            console.log(error)
+            alert('senha ou email errado')
+        }
+        
+        
+
+    }
 
     const handleClick = () => setShow(!show)
     return (
@@ -53,7 +78,7 @@ export default function Login({ navigation }){
                             
                     <Box safeArea maxW="80">
                         <TextInput
-                            
+                            onChangeText={value => setEmail(value)}
                             style={inputs.inputLaranja} 
                             placeholder="e-mail" 
                             numberOfLines={1}
@@ -64,6 +89,7 @@ export default function Login({ navigation }){
                             <TextInput
                                 style={inputs.inputSenha} placeholder="senha"  
                                 type={show ? "text" : "password"}
+                                onChangeText={value => setPsw(value)}
                             />
                             <Button  style={buttons.iconesLaranja} onPress={handleClick}>
                                 <Icon
@@ -82,8 +108,9 @@ export default function Login({ navigation }){
                             <Link  onPress={()=>{ navigation.navigate('SignUp')}}>Cadastre-se aqui!</Link>
                             <Button
                             colorScheme="indigo"
-                            onPress={()=>{ navigation.navigate('SignUp')}}
->
+                            
+                            onPress={()=> entrar()}
+                            >
                             entrar
                         </Button>
                         </Stack>
