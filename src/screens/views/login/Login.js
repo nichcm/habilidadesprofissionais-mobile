@@ -16,7 +16,6 @@ import * as Animatable from 'react-native-animatable';
 import inputs  from '../../../styles/inputs';
 import core from '../../../styles/core'
 import buttons from '../../../styles/buttons';
-import usuarioService from '../../../API/service';
 import { useAuth } from '../../../contexts/auth';
 
 export default function Login({ navigation }){
@@ -34,7 +33,6 @@ export default function Login({ navigation }){
         try {
             const response = await login(data)
 
-            navigation.navigate('Home')
         
         } catch (error) {
             console.log(error)
@@ -58,7 +56,7 @@ export default function Login({ navigation }){
                     <Box safeArea alignItems="center" mt="81">
                         <Animatable.Image
                             animation="bounceIn"
-                            source={require('../assets/Group1.png')}
+                            source={require('../../../assets/Group1.png')}
                             alt="Alternate Text"
                             style = {core.imgLogin}
                             onPress={()=> this.bounce}
@@ -108,7 +106,6 @@ export default function Login({ navigation }){
                             <Link  onPress={()=>{ navigation.navigate('SignUp')}}>Cadastre-se aqui!</Link>
                             <Button
                             colorScheme="indigo"
-                            
                             onPress={()=> entrar()}
                             >
                             entrar

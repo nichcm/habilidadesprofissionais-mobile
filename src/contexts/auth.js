@@ -14,6 +14,7 @@ export const AuthProvider = (props) => {
     
     const [user,setUser] = useState(undefined)
     const [token,setToken] = useState('')
+    
 
     async function login(data){
         return axios({
@@ -32,14 +33,16 @@ export const AuthProvider = (props) => {
         }).catch((error) => {
             console.log(error)
             return Promise.reject(error)
-        })
+        });
     }
     async function logOut(){
-        await AsyncStorage.clear();
-        setToken('')
-        setUser('')
+        return(
+            setUser(null),
+            setToken(null),
+            await AsyncStorage.clear()
+
         
-        navigation.navigate("Login")
+        );   
     }
 
 
@@ -47,13 +50,15 @@ export const AuthProvider = (props) => {
 
 
     return(
+
         <AuthContext.Provider value={{
             user,
             setUser,
             token,
             setToken,
             login,
-            logOut
+            logOut,
+            isLogged: Boolean(user)
         }}>
             {props.children}
             

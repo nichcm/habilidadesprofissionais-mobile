@@ -1,11 +1,21 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import AuthStack from "./authStack";
+import AuthRoutes from './authRoutes';
+
+import { useAuth } from '../contexts/auth';
+
 
 const Routes = () => {
+
+    const {isLogged} = useAuth();
+    
     return(
         <NavigationContainer>
-            <AuthStack/>
+            {
+                isLogged ? <AuthRoutes/> : <AuthStack/>
+            }
+            
         </NavigationContainer>
     );
 }
