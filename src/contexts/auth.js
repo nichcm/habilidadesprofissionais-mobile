@@ -3,18 +3,21 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 
 import axios from "axios"
 
+
 const AuthContext = createContext({
     user: {},
     token:'',
     login:()=>{},
-    logOut:()=>{}
+    logOut:()=>{},
+    pegaHabilidadesPessoa: ()=>{},
+    habilidade: []
 })
 
 export const AuthProvider = (props) => {
     
     const [user,setUser] = useState(undefined)
     const [token,setToken] = useState('')
-    
+    const [habilidade, setHabilidade] = useState([])
 
     async function login(data){
         return axios({
@@ -40,13 +43,23 @@ export const AuthProvider = (props) => {
             setUser(null),
             setToken(null),
             await AsyncStorage.clear()
-
-        
         );   
     }
 
+    async function pegaHabilidadesPessoa(id, token){
+        var config = {headers: {'Authorization': 'Bearer ' + token}}
+        return (
+            
+            await axios.get(`http://192.168.0.104:3000/api/niveis/pessoas/${id}`,config)
+            .then(response => {
+                setHabilidade(response.data)
+            })
+        );      
+    }
 
+    
 
+    
 
 
     return(
@@ -58,6 +71,8 @@ export const AuthProvider = (props) => {
             setToken,
             login,
             logOut,
+            pegaHabilidadesPessoa,
+            habilidade,
             isLogged: Boolean(user)
         }}>
             {props.children}

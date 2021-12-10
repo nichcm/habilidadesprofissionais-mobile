@@ -1,8 +1,8 @@
 import React from 'react';
-
 import { StyleSheet, Image, View  } from 'react-native'
-import { Heading, Input, Icon, Stack, Button,Box, Link, Center, Text } from 'native-base'
+import { FlatList,Heading, Input, Icon, Stack, Button,Box, Link, Center, Text } from 'native-base'
 
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 //editores
 import { LinearGradient } from 'expo-linear-gradient';
@@ -13,12 +13,17 @@ import inputs  from '../../../styles/inputs';
 import core from '../../../styles/core'
 import buttons from '../../../styles/buttons';
 import { useAuth } from '../../../contexts/auth';
-
+import axios from 'axios';
 
 
 export default function Home({ navigation }){
 
-    const {user, logOut} = useAuth()
+    const {user, logOut, token, pegaHabilidadesPessoa, habilidade} = useAuth()
+
+    
+    React.useEffect(()=>{
+        pegaHabilidadesPessoa(user.id,token)
+    },[])
 
     return (
         <View style={styles.container} >
@@ -31,20 +36,37 @@ export default function Home({ navigation }){
             >
             <View >
                 <Text>Bem vindo</Text>
-                <Text mb="2" >Criado por {user.nome}</Text>
+                <Text mb="2" >Criado por {user.name}</Text>
                 <View >
-                <Animatable.Image
-                    animation="bounceIn"
-                    source={require('../../../assets/Group1.png')}
-                    alt="Alternate Text"
-                    style = {core.imgLogin}
-                    onPress={()=> this.bounce}
+                    <Animatable.Image
+                        animation="bounceIn"
+                        source={require('../../../assets/Group1.png')}
+                        alt="Alternate Text"
+                        style = {core.imgLogin}
+                        onPress={()=> this.bounce}
                 />
                 <Text >Meu Portifolio</Text>
+                </View>
             </View>
+
+            <View style={styles.table}>
+                {habilidade.map(form => {
+                    return (
+                        <View style={styles.linha}>
+                            <Text  fontSize="xs">{form.titulo}</Text>
+                            <Text  fontSize="xs">{form.nivel}</Text>
+                            <Text  fontSize="xs">{form.experiencia}</Text>
+                            
+                        </View>
+                        
+                    )
+                })}
+
             </View>
+            
                             
             <Button
+                style={styles.button}
                 colorScheme="primary"
                 onPress={()=> logOut()}
             >
@@ -72,8 +94,22 @@ const styles = StyleSheet.create({
     },
     gradient:{
         flex:1,
+    },
+    table: {
+        flexDirection:'row',
+        justifyContent: 'space-between',
+        marginHorizontal: 20,
+        backgroundColor: '#FFA95F',
+        borderRadius: 15,
+        marginBottom:15,
+        borderColor:"#FFA95F",
+        padding: 22
+    },
+    button:{
+        bottom: 10,
+        width: '100%',
+        position: 'absolute'
     }
-
 
 
   });

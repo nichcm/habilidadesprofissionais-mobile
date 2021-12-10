@@ -32,15 +32,10 @@ export default function Login({ navigation }){
         }
         try {
             const response = await login(data)
-
-        
         } catch (error) {
             console.log(error)
             alert('senha ou email errado')
         }
-        
-        
-
     }
 
     const handleClick = () => setShow(!show)

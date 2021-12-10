@@ -10,7 +10,7 @@ export default function Admin({ navigation }){
     return (
         
     <View>
-    <Text  fontSize="xs">SignUp</Text>
+    <Text  fontSize="xs">admin</Text>
     
 </View>
     );
