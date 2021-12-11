@@ -35,8 +35,8 @@ export default function Home({ navigation }){
                 end={{ x: 1, y: 1 }}
             >
             <View >
-                <Text>Bem vindo</Text>
-                <Text mb="2" >Criado por {user.name}</Text>
+                <Text mt="24">Este é seu perfil</Text>
+                <Text mb="2" >{user.nome}</Text>
                 <View >
                     <Animatable.Image
                         animation="bounceIn"
@@ -52,19 +52,22 @@ export default function Home({ navigation }){
             <View style={styles.table}>
                 {habilidade.map(form => {
                     return (
-                        <View style={styles.linha}>
+                        <View style={styles.itemTable} key={form.id}>
                             <Text  fontSize="xs">{form.titulo}</Text>
                             <Text  fontSize="xs">{form.nivel}</Text>
                             <Text  fontSize="xs">{form.experiencia}</Text>
-                            
                         </View>
                         
                     )
                 })}
 
             </View>
+            <Button  style={buttons.iconesLaranja}
+            onPress={()=>{ navigation.navigate('Admin')}}>
+                <Text  fontSize="xs">ir para admim</Text>
+            </Button>
             
-                            
+                          
             <Button
                 style={styles.button}
                 colorScheme="primary"
@@ -96,7 +99,7 @@ const styles = StyleSheet.create({
         flex:1,
     },
     table: {
-        flexDirection:'row',
+        
         justifyContent: 'space-between',
         marginHorizontal: 20,
         backgroundColor: '#FFA95F',
@@ -104,6 +107,10 @@ const styles = StyleSheet.create({
         marginBottom:15,
         borderColor:"#FFA95F",
         padding: 22
+    },
+    itemTable:{
+        flexDirection:'row',
+        justifyContent: 'space-between',
     },
     button:{
         bottom: 10,

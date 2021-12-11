@@ -5,6 +5,7 @@ const inputs = StyleSheet.create({
     inputLaranja: {
         width: 300,
         height: 58,
+        paddingLeft:8,
         paddingBottom:4,
         borderRadius: 15,
         backgroundColor: '#ffff',
@@ -30,6 +31,7 @@ const inputs = StyleSheet.create({
         width: 250,
         height: 58,
         paddingBottom:4,
+        paddingLeft:8,
         
         backgroundColor: '#ffff',
         marginBottom:15,
